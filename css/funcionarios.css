@@ -1,0 +1,180 @@
+.funcionarios_content {
+  padding: 35px;
+}
+/*Cabeçalho da página pacientes*/
+.pagina_cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.pagina_cabecalho h1 {
+  color: var(--text);
+  font-size: 1.7rem;
+}
+.pagina_cabecalho p {
+  margin-top: 5px;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/*TABELA*/
+/*Título do painel*/
+.painel_titulo {
+  margin-bottom: 22px;
+}
+.painel_titulo h2 {
+  color: var(--text);
+  font-size: 1.5rem;
+}
+.painel_titulo p {
+  margin-top: 5px;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+.painel_tabela {
+  background: var(--branco-suave);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 25px;
+}
+.tabela_container {
+  /*Adiciona uma barra de rolagem horizontal quando o conteúdo ultrapassar a largura da tabela*/
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: var(--blue);
+}
+th {
+  padding: 13px;
+  text-align: left;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+td {
+  padding: 14px 13px;
+  border-top: 1px solid #edf0ef;
+  color: var(--text);
+  font-size: 0.78rem;
+}
+tbody tr:hover {
+  background: #fafcfb;
+}
+/*Mensagem da tabela vazia*/
+.tabela_vazia {
+  text-align: center;
+  padding: 45px 20px;
+}
+.tabela_vazia i {
+  display: block;
+  margin-bottom: 10px;
+  color: #99aaa6;
+  font-size: 32px;
+}
+.tabela_vazia h3 {
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+.tabela_vazia p{
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/*FORMULÁRIO*/
+.painel_form {
+  background: var(--branco-suave);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+/*Campos do formulário*/
+.form_campos_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.form_campos {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.form_campos label {
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.form_campos input,
+textarea,
+select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #d9dfdd;
+  border-radius: 8px;
+  background: var(--branco-suave);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+}
+.form_campos select {
+  cursor: pointer;
+}
+.form_campos input:focus,
+.form_campos textarea:focus,
+.form_campos select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(82, 125, 116, 0.1);
+}
+.full-width {
+  /*Dessa forma o textarea pega toda a largura do grid, indo desde a primeira linha (1) até a ultima (-1)*/
+  grid-column: 1 / -1;
+}
+/*Botões do formulário*/
+.form_botoes {
+  display: flex;
+  /*joga os botões para o lado direito*/
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+.botao_cancelar {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.botao_cancelar:hover {
+  background: #9c0606;
+}
+.botao_salvar {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: #157936;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.botao_salvar:hover {
+  background: #0b4d21;
+}

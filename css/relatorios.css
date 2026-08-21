@@ -1,0 +1,121 @@
+.relatorios_content {
+  padding: 35px;
+}
+
+/*Painel*/
+.relatorio_painel {
+  background: var(--branco-suave);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+.painel_titulo {
+  margin-bottom: 22px;
+}
+.painel_titulo h2 {
+  color: var(--text);
+  font-size: 1.5rem;
+}
+.painel_titulo p {
+  margin-top: 5px;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/*Status*/
+.status_relatorio {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+.status_item {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status_item div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.status_item strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.status_item div span {
+  color: var(--blue);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.agendada {
+  color: #b96812;
+}
+.andamento {
+  color: #1d4968;
+}
+.concluida {
+  color: #20613c;
+}
+.cancelada {
+  color: #701616;
+}
+
+/*Cargos*/
+.cargos_lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cargo_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  background: #e2e4e3;
+  border-radius: 8px;
+}
+.cargo_item span {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.cargo_item strong {
+  color: var(--primary);
+}
+
+/*Tabela*/
+.tabela_container {
+  overflow-x: auto;
+  /*Adiciona uma barra de rolagem horizontal quando o conteúdo ultrapassar a largura da tabela*/
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: var(--blue);
+}
+th {
+  padding: 13px;
+  text-align: left;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+td {
+  padding: 14px 13px;
+  border-top: 1px solid #edf0ef;
+  color: var(--text);
+  font-size: 0.78rem;
+}
+tbody tr:hover {
+  background: #fafcfb;
+}
+
+
+
+
