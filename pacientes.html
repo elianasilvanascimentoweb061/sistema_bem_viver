@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <!--Específico da página pacientes-->
+  <link rel="stylesheet" href="css/pacientes.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Pacientes | Bem Viver</title>
+</head>
+<body>
+  <!--ESTRUTURA PRINCIPAL-->
+  <div class="dashboard">
+    <!--Menu Lateral-->
+    <aside class="sidebar">
+      <!--Logo do sistema-->
+      <div class="sidebar_logo">
+        <div class="logo_icon">
+          <img src="imagens/logo_bem_viver.png" alt="Logo do Sistema Bem Viver">
+        </div>
+        <div>
+          <h1>Bem Viver</h1>
+          <span> Sistema de Gestão de ILPI</span>
+        </div>
+      </div>
+
+      <!--Menu Principal-->
+      <nav class="sidebar_menu">
+        <p class="menu_titulo"> MENU PRINCIPAL </p>
+
+        <!--Página atual - a opção do menu vai ficar destaada de acordo com a página em que o usuário estiver-->
+        <a href="dashboard.html" class="menu_item">
+          <i class="fa-solid fa-house"></i>
+          <span> Início </span>
+        </a>
+        <a href="#" class="menu_item active">
+          <i class="fa-solid fa-person"></i>
+          <span> Pacientes </span>
+        </a>
+        <a href="funcionario.html" class="menu_item">
+          <i class="fa-solid fa-users"></i>
+          <span> Funcionários </span>
+        </a>
+        <a href="atividade.html" class="menu_item">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span> Atividades </span>
+        </a>
+
+        <!--Menu Secundário - referente ao sistema-->
+        <p class="menu_titulo menu_titulo_secundario"> SISTEMA </p>
+        <a href="relatorios.html" class="menu_item">
+          <i class="fa-solid fa-chart-column"></i>
+          <span> Relatórios </span>
+        </a>
+      </nav>
+
+      <!--Botão sair-->
+      <div class="sidebar_sair">
+        <button id="botaoSair" class="botao_sair">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span> Sair </span>
+        </button>
+      </div>
+      <!--Fim menu principal-->
+    </aside>
+    <!--Fim menu Lateral-->
+
+    <!--Conteúdo Principal-->
+    <main class="conteudo_principal">
+      <!--Cabeçalho-->
+      <header class="cabecalho">
+        <div class="pagina_titulo">
+          <h2> Dashboard </h2>
+          <p> Visão geral da instituição </p>
+        </div>
+
+        <!--Área do usuário-->
+        <div class="cabecalho_user">
+          <!-- Usuário icon -->
+          <div class="icon_user">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <!--Informações do usuário-->
+          <div class="info_user">
+            <strong id="emailUser"> Funcionário </strong>
+            <span> Administrador </span>
+          </div>
+        </div>
+      </header>
+
+      <!--Conteúdo dos pacientes-->
+      <section class="pacientes_content">
+        <!--Título-->
+        <div class="pagina_cabecalho">
+          <div>
+            <h1> Gerenciamento de pacientes </h1>
+            <p> 
+              Cadastre e gerencie os residentes da instituição. 
+            </p>
+          </div>
+        </div>
+        <!--Fim da div pagina_cabecalho-->
+
+        <!--Lista de pacientes-->
+        <section class="painel_tabela">
+          <div class="painel_titulo">
+            <h2> Pacientes cadastrados </h2>
+            <p> Lista de residentes da instituição. </p>
+          </div>
+
+          <!--Tabela-->
+          <div class="tabela_container">
+            <table>
+              <thead>
+                <tr>
+                  <th> Nome </th>
+                  <th> Nascimento </th>
+                  <th> Responsável </th>
+                  <th> Telefone </th>
+                  <th> Ações </th>
+                </tr>
+              </thead>
+
+              <tbody id="pacientesTb">
+                <!--O JavaScript irá colocar os pacientes aqui-->
+              </tbody>
+            </table>
+          </div>
+
+          <!--Quando não houver pacientes-->
+          <div id="tabelaVazia" class="tabela_vazia">
+            <i class="fa-solid fa-person-circle-plus"></i>
+            <h3> Nenhum paciente cadastrado </h3>
+            <p> 
+              Vá em "Novo paciente" para realizar o primeiro cadastro.
+            </p>
+          </div>
+        </section>
+        <!--Fim lista de pacientes-->
+
+        <!--Formulário de cadastro-->
+        <section id="pacienteFormContainer" class="painel_form ">
+          <div class="painel_titulo">
+            <h2> Novo paciente </h2>
+            <p> Informe os dados do residente. </p>
+          </div>
+
+          <form id="pacienteForm">
+            <!-- Campos do formulário -->
+            <div class="form_campos_container">
+              <!-- Nome -->
+              <div class="form_campos">
+                <label for="nome"> 
+                  Nome completo *
+                </label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Digite o nome completo"
+                  required
+                >
+              </div>
+              <!-- Data de nascimento -->
+              <div class="form_campos">
+                <label for="dataNascimento">
+                  Data de nascimento *
+                </label>
+                <input
+                  type="date"
+                  id="dataNascimento"
+                  name="dataNascimento"
+                  required
+                >
+              </div>
+              <!-- CPF -->
+              <div class="form_campos">
+                <label for="cpf"> CPF </label>
+                <input
+                  type="text"
+                  id="cpf"
+                  name="cpf"
+                  placeholder="000.000.000-00"
+                >
+              </div>
+              <!-- Telefone -->
+              <div class="form_campos">
+                <label for="telefone"> Telefone </label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(99) 99999-9999"
+                >
+              </div>
+              <!-- Responsável -->
+              <div class="form_campos">
+                <label for="responsavel"> 
+                  Responsável
+                </label>
+                <input
+                  type="text"
+                  id="responsavel"
+                  name="responsavel"
+                  placeholder="Nome do responsável"
+                >
+              </div>
+              <!-- Endereço -->
+              <div class="form_campos">
+                <label for="endereco"> Endereço </label>
+                <input
+                  type="text"
+                  id="endereco"
+                  name="endereco"
+                  placeholder="Endereço do paciente"
+                >
+              </div>
+              <!-- Observações -->
+              <div class="form_campos full-width">
+                <label for="observacoes"> Observações </label>
+                <textarea
+                  id="observacoes"
+                  name="observacoes"
+                  rows="4"
+                  placeholder="Informações adicionais..."
+                ></textarea>
+              </div>
+            </div>
+            <!--Fim da div form_campos_container-->
+
+            <!--Botões do formulário-->
+            <div class="form_botoes">
+              <button
+                type="button"
+                id="cancelarPacienteBotao"
+                class="botao_cancelar"
+              >
+                Cancelar
+              </button>
+              <button type="submit" id="botaoSalvar" class="botao_salvar">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Salvar paciente
+              </button>
+            </div>
+          </form>
+        </section>
+        <!--Fim seçao formulário-->
+
+      </section>
+    </main>
+    <!--Fim conteúdo principal-->
+  </div>
+  <!--Fim da div dashboard-->
+</body>
+
+  <!--JavaScript-->
+  <script type="module" src="js/pacientes.js"></script>
+</html>

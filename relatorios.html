@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/relatorios.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Relatórios | Bem Viver</title>
+</head>
+<body>
+  <!--ESTRUTURA PRINCIPAL-->
+  <div class="dashboard">
+
+    <!--Menu Lateral-->
+    <aside class="sidebar">
+      <div class="sidebar_logo">
+        <div class="logo_icon">
+          <img src="imagens/logo_bem_viver.png" alt="Logo do Sistema Bem Viver">
+        </div>
+        <div>
+          <h1>Bem Viver</h1>
+          <span> Sistema de Gestão de ILPI</span>
+        </div>
+      </div>
+
+      <!--Menu Principal-->
+      <nav class="sidebar_menu">
+        <p class="menu_titulo"> MENU PRINCIPAL </p>
+
+        <!--Página atual - a opção do menu vai ficar destaada de acordo com a página em que o usuário estiver-->
+        <a href="dashboard.html" class="menu_item">
+          <i class="fa-solid fa-house"></i>
+          <span> Início </span>
+        </a>
+        <a href="pacientes.html" class="menu_item">
+          <i class="fa-solid fa-person"></i>
+          <span> Pacientes </span>
+        </a>
+        <a href="funcionario.html" class="menu_item">
+          <i class="fa-solid fa-users"></i>
+          <span> Funcionários </span>
+        </a>
+        <a href="atividade.html" class="menu_item">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span> Atividades </span>
+        </a>
+
+        <!--Menu Secundário - referente ao sistema-->
+        <p class="menu_titulo menu_titulo_secundario"> SISTEMA </p>
+        <a href="#" class="menu_item active">
+          <i class="fa-solid fa-chart-column"></i>
+          <span> Relatórios </span> 
+        </a>
+      </nav>
+
+      <!--Botão sair-->
+      <div class="sidebar_sair">
+        <button id="botaoSair" class="botao_sair">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span> Sair </span>
+        </button>
+      </div>
+    </aside>
+
+    <!--Conteúdo Principal-->
+    <main class="conteudo_principal">
+
+      <!--Cabeçalho-->
+      <header class="cabecalho">
+        <div class="pagina_titulo">
+          <h2> Dashboard </h2>
+          <p> Visão geral da instituição </p>
+        </div>
+
+        <!--Área do usuário-->
+        <div class="cabecalho_user">
+          <!-- Usuário icon -->
+          <div class="icon_user">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <!--Informações do usuário-->
+          <div class="info_user">
+            <strong id="emailUser"> Funcionário </strong>
+            <span> Administrador </span>
+          </div>
+        </div>
+      </header>
+
+      <!--Conteúdo da página-->
+      <section class="relatorios_content">
+
+        <!--Título-->
+        <div class="pagina_cabecalho">
+          <div>
+            <h1> Relatórios </h1>
+            <p>
+              Acompanhe os principais indicadores da instituição.
+            </p>
+          </div>
+        </div>
+
+        <!--Cards de resumo-->
+        <section class="cards_resumo">
+          <!--Cards de pacientes-->
+          <div class="card_resumo">
+            <div class="card_icon">
+              <i class="fa-solid fa-person"></i>
+            </div>
+            <div class="card_content">
+              <span> Pacientes </span>
+              <strong id="totalPacientes">0</strong>
+              <p> Pacientes cadastrados </p>
+            </div>
+          </div>
+
+          <!--Cards de atividades-->
+          <div class="card_resumo">
+            <div class="card_icon">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div class="card_content">
+              <span> Atividades </span>
+              <strong id="totalAtividades">0</strong>
+              <p> Atividades programadas </p>
+            </div>
+          </div>
+
+          <!--Cards de funcionários-->
+          <div class="card_resumo">
+            <div class="card_icon funcionários_icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="card_content">
+              <span> Funcionários </span>
+              <strong id="totalFuncionarios">0</strong>
+              <p> Funcionários cadastrados </p>
+            </div>
+          </div>
+        </section>
+        <!--Fim section resumo-->
+
+        <!--Status das atividades-->
+        <section class="relatorio_painel">
+          <div class="painel_titulo">
+            <div>
+              <h2> Status das atividades </h2>
+              <p> Distribuição das atividades cadastradas. </p>
+            </div>
+          </div>
+
+          <div class="status_relatorio">
+            <div class="status_item">
+              <div>
+                <strong class="agendada"> Agendadas </strong>
+                <span id="totalAgendadas">0</span>
+              </div>
+            </div>
+            <div class="status_item">
+              <div>
+                <strong class="andamento"> Em andamento </strong>
+                <span id="totalAndamento">0</span>
+              </div>
+            </div>
+            <div class="status_item">
+              <div>
+                <strong class="concluida"> Concluídas </strong>
+                <span id="totalConcluidas">0</span>
+              </div>
+            </div>
+            <div class="status_item">
+              <div>
+                <strong class="cancelada"> Canceladas </strong>
+                <span id="totalCanceladas">0</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--Funcionários por cargo-->
+        <section class="relatorio_painel">
+          <div class="painel_titulo">
+            <div>
+              <h2> Funcionários por cargo </h2>
+              <p>
+                Quantidade de funcionários cadastrados em cada cargo.
+              </p>
+            </div>
+          </div>
+          <div id="cargosLista" class="cargos_lista">
+            <!-- O javascript vai preencher os dados -->
+          </div>
+        </section>
+
+        <!--Atividades-->
+        <section class="relatorio_painel">
+          <div class="painel_titulo">
+            <div>
+              <h2> Atividades cadastradas </h2>
+              <p>
+                Resumo das atividades registradas no sistema.
+              </p>
+            </div>
+          </div>
+
+          <div class="tabela_container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Atividade</th>
+                  <th>Data</th>
+                  <th>Horário</th>
+                  <th>Responsável</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="atividadesTb">
+                <!-- O javascript vai preencher os dados -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!--Fim setction relatórios_painel-->
+
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/relatorios.js"></script>
+</body>
+</html>

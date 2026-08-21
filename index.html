@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Css geral do sistema-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
+  <title>Sistema Asilo</title>
+</head>
+<body>
+  <main class="login_container">
+    <!--Seção ilustração login-->
+    <section class="login_img">
+      <!--Logo do sistema e ilustração-->
+      <div class="ilustracao_content">
+        <h1 class="logo_titulo"> Bem Viver</h1>
+        <p>
+          Sistema de gerenciamento para instituições de longa permanência.
+        </p>
+      </div>
+    </section>
+    <!--Fim seção ilustração login-->
+
+    <!--Seção login formulário-->
+    <section class="login_form_container">
+      <div class="login_form_content">
+        <!--Versão mobile da ilustração
+        <div class="ilustracao_mobile">
+          <h1 class="logo_titulo"> Bem Viver</h1>
+          <p>
+            Sistema de gerenciamento para instituições de longa permanência.
+          </p>
+        </div>-->
+
+        <!-- Título do formulário -->
+        <div class="login_titulo">
+          <div class="logo">
+            <img src="imagens/favicon.png" alt="">
+          </div>
+          <div class="login_texto">
+            <h2>Bem-vindo(a)!</h2>
+            <p>
+              Informe os seus dados para acessar o sistema.
+            </p>
+          </div>
+        </div>
+
+        <!--Formulário de login-->
+        <form id="loginForm">
+          <!--Campo do email-->
+          <div class="form_container">
+            <label for="email">
+              E-mail
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Digite seu e-mail"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <!--Campo da senha-->
+          <div class="form_container">
+            <label for="password">
+              Senha
+            </label>
+            <div class="senha_input">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+              <button
+                type="button"
+                id="mostrarSenha"
+                aria-label="Mostrar senha"
+              ><!-- Botão para mostrar ou esconder a senha-->
+                <i class="fa-solid fa-eye"></i>
+                
+              </button>
+            </div>
+          </div>
+
+          <!--Botão de login-->
+          <button
+            type="submit"
+            class="login_botao"
+            id="loginBotao"
+          >
+            Entrar
+          </button>
+          <!--Irá exibir uma mensagem quando o login e a senha estiverem incorretos-->
+          <p id="loginMensagem" class="login_mensagem"> </p>
+        </form>
+
+      </div>
+    </section>
+    <!--Fim seção login formulário-->
+  </main>
+
+  <!--JavaScript para a autenticação do login-->
+  <script type="module" src="js/autenticacao.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <!--Pega as configurações do menu e cabeçalho-->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <!--Específico da página pacientes-->
+  <link rel="stylesheet" href="css/atividades.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Atividades | Bem Viver</title>
+</head>
+<body>
+  <!--ESTRUTURA PRINCIPAL-->
+  <div class="dashboard">
+    <!--Menu Lateral-->
+    <aside class="sidebar">
+      <!--Logo do sistema-->
+      <div class="sidebar_logo">
+        <div class="logo_icon">
+          <img src="imagens/logo_bem_viver.png" alt="Logo do Sistema Bem Viver">
+        </div>
+        <div>
+          <h1>Bem Viver</h1>
+          <span> Sistema de Gestão de ILPI</span>
+        </div>
+      </div>
+
+      <!--Menu Principal-->
+      <nav class="sidebar_menu">
+        <p class="menu_titulo"> MENU PRINCIPAL </p>
+
+        <!--Página atual - a opção do menu vai ficar destaada de acordo com a página em que o usuário estiver-->
+        <a href="dashboard.html" class="menu_item">
+          <i class="fa-solid fa-house"></i>
+          <span> Início </span>
+        </a>
+        <a href="pacientes.html" class="menu_item">
+          <i class="fa-solid fa-person"></i>
+          <span> Pacientes </span>
+        </a>
+        <a href="funcionario.html" class="menu_item">
+          <i class="fa-solid fa-users"></i>
+          <span> Funcionários </span>
+        </a>
+        <a href="#" class="menu_item active">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span> Atividades </span>
+        </a>
+
+        <!--Menu Secundário - referente ao sistema-->
+        <p class="menu_titulo menu_titulo_secundario"> SISTEMA </p>
+        <a href="relatorios.html" class="menu_item">
+          <i class="fa-solid fa-chart-column"></i>
+          <span> Relatórios </span> 
+        </a>
+      </nav>
+      <!--Botão sair-->
+      <div class="sidebar_sair">
+        <button id="botaoSair" class="botao_sair">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span> Sair </span>
+        </button>
+      </div>
+      <!--Fim menu principal-->
+    </aside>
+
+    <!--Conteúdo Principal-->
+    <main class="conteudo_principal">
+      <!--Cabeçalho-->
+      <header class="cabecalho">
+        <div class="pagina_titulo">
+          <h2> Dashboard </h2>
+          <p> Visão geral da instituição </p>
+        </div>
+
+        <!--Área do usuário-->
+        <div class="cabecalho_user">
+          <!-- Usuário icon -->
+          <div class="icon_user">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <!--Informações do usuário-->
+          <div class="info_user">
+            <strong id="emailUser"> Funcionário </strong>
+            <span> Administrador </span>
+          </div>
+        </div>
+      </header>
+
+      <!--Conteúdo das atividades-->
+      <section class="atividades_content">
+        <!--Título-->
+        <div class="pagina_cabecalho">
+          <div>
+            <h1> Gerenciamento de atividade </h1>
+            <p> 
+              Cadastre e gerencie as atividades para os pacientes da instituição. 
+            </p>
+          </div>
+        </div>
+        <!--Fim da div pagina_cabecalho-->
+
+        <!--Lista de atividades-->
+        <section class="painel_tabela">
+          <div class="painel_titulo">
+            <h2> Atividades programadas </h2>
+            <p> Lista de atividades programadas. </p>
+          </div>
+
+          <!--Tabela-->
+          <div class="tabela_container">
+            <table>
+              <thead>
+                <tr>
+                  <th> Atividade </th>
+                  <th> Data </th>
+                  <th> Horário </th>
+                  <th> Responsável </th>
+                  <th> Status </th>
+                  <th> Ações </th>
+                </tr>
+              </thead>
+
+              <tbody id="atividadesTb">
+                <!--O JavaScript irá colocar as atividades aqui-->
+              </tbody>
+            </table>
+          </div>
+
+          <!--Quando não houver atividades-->
+          <div id="tabelaVazia" class="tabela_vazia">
+            <i class="fa-solid fa-person-circle-plus"></i>
+            <h3> Nenhuma atividade programada </h3>
+            <p> 
+              Vá em "Adicionar atividade" para realizar o primeiro cadastro.
+            </p>
+          </div>
+          <!--Fim tabela-->
+        </section>
+
+        <!--Formulário de cadastro-->
+        <section id="atividadeFormContainer" class="painel_form ">
+          <div class="painel_titulo">
+            <h2> Adicionar atividade </h2>
+            <p> Informe os dados da atividade. </p>
+          </div>
+
+          <form id="atividadeForm">
+            <!-- Campos do formulário -->
+            <div class="form_campos_container">
+              <!-- Nome da atividade-->
+              <div class="form_campos">
+                <label for="atividadeNome"> 
+                  Nome da atividade *
+                </label>
+                <input
+                  type="text"
+                  id="atividadeNome"
+                  name="atividadeNome"
+                  placeholder="Digite o nome da atividade"
+                  required
+                >
+              </div>
+              <!-- Tipo de atividade -->
+              <div class="form_campos">
+                <label for="tipo"> Tipo de atividade * </label>
+                <select name="tipo" id="tipo" required>
+                  <option value="" selected disabled>
+                    Selecione o tipo de atividade
+                  </option>
+                  <option value="Física">
+                    Atividade física
+                  </option>
+                  <option value="Cognitiva">
+                    Cognitiva
+                  </option>
+                  <option value="Recreativa/Manual">
+                    Recreativa/Manual
+                  </option>
+                  <option value="Social">
+                    Social
+                  </option>
+                  <option value="Cultural">
+                    Cultural
+                  </option>
+                </select>
+              </div>
+              <!-- Data da atividade -->
+              <div class="form_campos">
+                <label for="dataAtividade">
+                  Data da atividade *
+                </label>
+                <input
+                  type="date"
+                  id="dataAtividade"
+                  name="dataAtividade"
+                  required
+                >
+              </div>
+              <!-- Hora da atividade -->
+              <div class="form_campos">
+                <label for="horaAtividade">
+                  Horário *
+                </label>
+                <input
+                  type="time"
+                  id="horaAtividade"
+                  name="horaAtividade"
+                  required
+                >
+              </div>
+              <!-- Nome do responsavel-->
+              <div class="form_campos">
+                <label for="responsavel"> 
+                  Nome do responsavel *
+                </label>
+                <select name="responsavel" id="responsavel">
+                  <option value="">Selecione o responsavel</option>
+                  <!--O javascript vai carregar os funcionários aqui-->
+                </select>
+              </div>
+              <!-- Local -->
+              <div class="form_campos">
+                <label for="local"> Local </label>
+                <input
+                  type="text"
+                  id="local"
+                  name="local"
+                  placeholder="Local da atividade"
+                >
+              </div>
+              <!-- Status da atividade -->
+              <div class="form_campos full-width">
+                <label for="status"> Status de atividade * </label>
+                <select name="status" id="status" required>
+                  <option value="Agendada" selected>
+                    Agendada
+                  </option>
+                  <option value="Em andamento">
+                    Em andamento
+                  </option>
+                  <option value="Concluída">
+                    Concluída
+                  </option>
+                  <option value="Cancelada">
+                    Cancelada
+                  </option>
+                </select>
+              </div>
+              <!-- Observações -->
+              <div class="form_campos full-width">
+                <label for="observacoes"> Observações </label>
+                <textarea
+                  id="observacoes"
+                  name="observacoes"
+                  rows="4"
+                  placeholder="Informações adicionais..."
+                ></textarea>
+              </div>
+            </div>
+            <!--Fim da div form_campos_container-->
+
+            <!--Botões do formulário-->
+            <div class="form_botoes">
+              <button
+                type="button"
+                id="cancelarBotao"
+                class="botao_cancelar"
+              >
+                Cancelar
+              </button>
+              <button type="submit" id="botaoSalvar" class="botao_salvar">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Salvar atividade
+              </button>
+            </div>
+
+          </form>
+        </section>
+        <!--Fim formulário de cadastro-->
+
+      </section>
+    </main>
+  </div>
+  <!--Fim da div dashboard-->
+  <!--JavaScript-->
+  <script type="module" src="js/atividades.js"></script>
+</body>
+</html>
