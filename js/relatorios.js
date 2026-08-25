@@ -22,6 +22,9 @@ const totalAndamento = document.getElementById("totalAndamento");
 const totalConcluidas = document.getElementById("totalConcluidas");
 const totalCanceladas = document.getElementById("totalCanceladas");
 
+const sexoResidentesLista = document.getElementById("sexoResidentesLista");
+const sexoFuncionariosLista = document.getElementById("sexoFuncionariosLista");
+
 const cargosLista = document.getElementById("cargosLista");
 const atividadesTb = document.getElementById("atividadesTb");
 
@@ -51,10 +54,12 @@ async function carregarRelatorios() {
     totalFuncionarios.textContent = funcionariosSnapshot.size;
     totalAtividades.textContent = atividadesSnapshot.size;
 
-    //Relatórios dos status, cargos e atividades
+    //Relatórios dos status, cargos, atividades e sexo dos residentes e funcionários
     carregarStatusAtividades(atividadesSnapshot);
     carregarCargos(funcionariosSnapshot);
     carregarTabelaAtividades(atividadesSnapshot);
+    carregarSexo(residentesSnapshot, sexoResidentesLista);
+    carregarSexo(funcionariosSnapshot, sexoFuncionariosLista);
   }catch(error){
     console.error("Erro ao carregar relatórios:", error);
   }
@@ -62,7 +67,7 @@ async function carregarRelatorios() {
 
 //Status das atividades
 function carregarStatusAtividades(resultado) {
-  //Contadores - a quantidade vai acumulando a cada atividade adicionada
+  //Contadores - começa com zero e a quantidade vai acumulando a cada atividade adicionada
   let agendadas = 0;
   let andamento = 0;
   let concluidas = 0;
@@ -73,7 +78,7 @@ function carregarStatusAtividades(resultado) {
     const status = atividade.status;
 
     if (status === "Agendada") {
-      agendadas++;
+      agendadas++; //Acumala a quantidade a medida que novas atividades com esse status são adicionadas
     }
     else if (status === "Em andamento") {
       andamento++;
@@ -91,6 +96,41 @@ function carregarStatusAtividades(resultado) {
   totalAndamento.textContent = andamento;
   totalConcluidas.textContent = concluidas;
   totalCanceladas.textContent = canceladas;
+}
+
+//Distribuição de residentes e funcionários por sexo
+function carregarSexo(resultado, elemento){
+  //Começa todos os contadores com zero
+  const sexo = {
+    "Feminino": 0,
+    "Masculino": 0,
+    "Não informado": 0
+  };
+  //Percorre os documentos
+  resultado.forEach((documento) => {
+    const pessoa = documento.data();
+    //Se o cadastro antigo não possuir sexo sera considerado "não informado" -  campo sexo foi adicionado depois
+    const valorSexo = pessoa.sexo || "Não informado";
+    //Verifica se o valor existe nos contadores
+    if (sexo.hasOwnProperty(valorSexo)){
+      sexo[valorSexo]++;
+    } else{
+      sexo["Não informado"]++;
+    }
+  });
+  //Limpa a lista
+  elemento.innerHTML = "";
+
+  //Cria cada linha
+  Object.entries(sexo).forEach(([nome, quantidade]) => {
+    const item = document.createElement("div");
+    item.className = "sexo_item";
+    item.innerHTML = `
+    <span>${nome}</span>
+    <strong>${quantidade}</strong>
+    `
+    elemento.appendChild(item);
+  });
 }
 
 //Quantidade de funcionários por cargo
@@ -124,7 +164,6 @@ function carregarCargos(resultado) {
 //Tabela de atividades
 function carregarTabelaAtividades(resultado) {
   atividadesTb.innerHTML = "";
-
 
   if (resultado.empty) {
     atividadesTb.innerHTML = `

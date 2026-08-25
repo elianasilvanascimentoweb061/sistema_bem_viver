@@ -1,10 +1,10 @@
-// Importa o Authentication e o Firestore que já foram configurados no firebase.js
+//Importa o Authentication e o Firestore que já foram configurados no firebase.js
 import {auth, db} from "./firebase.js";
 import {
   onAuthStateChanged, //verifica se tem algum usuário logado
-  signOut // pra sair
+  signOut //pra sair
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-// Funções pra trabalhar com documentos do Firestore
+//Funções pra trabalhar com documentos do Firestore
 import {
   collection,
   addDoc,
@@ -24,12 +24,15 @@ const botaoSalvar = document.getElementById("botaoSalvar");
 const funcionariosTb = document.getElementById("funcionariosTb");
 //Formulário
 const funcionarioForm = document.getElementById("funcionarioForm");
+const tituloForm = document.getElementById("tituloForm");
+const descricaoForm = document.getElementById("descricaoForm");
 //Mensagem exibida quando não existem pacientes
 const tabelaVazia = document.getElementById("tabelaVazia");
 
 //Campos do formulário
 const nomeInput = document.getElementById("nome");
 const dataNascimentoInput = document.getElementById("dataNascimento");
+const sexoSelect = document.getElementById("sexo");
 const cpfInput = document.getElementById("cpf");
 const cargoSelect = document.getElementById("cargo");
 const telefoneInput = document.getElementById("telefone");
@@ -60,6 +63,9 @@ cancelarBotao.addEventListener("click", () => {
   funcionarioForm.reset();
   //Sai do modo edição
   funcionarioEditandoId = null;
+  //Muda visualmente o titulo e a descrição do formulário
+  tituloForm.textContent = "Novo funcionário";
+  descricaoForm.textContent = "Informe os dados do funcionário"; 
   botaoSalvar.disabled = false;
   botaoSalvar.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar funcionário';
 });
@@ -79,6 +85,7 @@ funcionarioForm.addEventListener("submit", async (event) =>{
         //Atualiza o documento
         nome: nomeInput.value.trim(),
         dataNascimento: dataNascimentoInput.value,
+        sexo: sexoSelect.value || "Não informado",
         cpf: cpfInput.value.trim(),
         cargo: cargoSelect.value,
         telefone: telefoneInput.value.trim(),
@@ -93,6 +100,7 @@ funcionarioForm.addEventListener("submit", async (event) =>{
       await addDoc(collection(db, "funcionarios"),{
         nome: nomeInput.value.trim(),
         dataNascimento: dataNascimentoInput.value,
+        sexo: sexoSelect.value || "Não informado",
         cpf: cpfInput.value.trim(),
         cargo: cargoSelect.value,
         telefone: telefoneInput.value.trim(),
@@ -108,6 +116,9 @@ funcionarioForm.addEventListener("submit", async (event) =>{
     //Limpa o formulário
     funcionarioForm.reset();
     funcionarioEditandoId = null;
+    //Muda visualmente o titulo e a descrição do formulário
+    tituloForm.textContent = "Novo funcionário";
+    descricaoForm.textContent = "Informe os dados do funcionário";
     botaoSalvar.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar funcionário';
     botaoSalvar.disabled = false;
 
@@ -212,6 +223,7 @@ async function editarFuncionario(id){
         //Preenche o fomulário com os dados do funcionario a ser editado
         nomeInput.value = funcionario.nome || "";
         dataNascimentoInput.value = funcionario.dataNascimento || "";
+        sexoSelect.value = funcionario.sexo || "";
         cpfInput.value = funcionario.cpf || "";
         cargoSelect.value = funcionario.cargo || "";
         telefoneInput.value = funcionario.telefone || "";
@@ -221,6 +233,9 @@ async function editarFuncionario(id){
         observacoesInput.value = funcionario.observacoes || "";
 
         funcionarioEditandoId = documento.id;
+        //Muda visualmente o titulo e a descrição do formulário
+        tituloForm.textContent = "Editar funcionário";
+        descricaoForm.textContent = "Altere os dados do funcionário"; 
         botaoSalvar.innerHTML = '<i class="fa-solid fa-pen"></i> Atualizar funcionário';
         //Leva o usuário até o formulário
         funcionarioForm.scrollIntoView({behavior: "smooth"});

@@ -1,10 +1,10 @@
-// Importa o Authentication e o Firestore que já foram configurados no firebase.js
+//Importa o Authentication e o Firestore que já foram configurados no firebase.js
 import {auth, db} from "./firebase.js";
 import {
   onAuthStateChanged, //verifica se tem algum usuário logado
-  signOut // pra sair
+  signOut //pra sair
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-// Funções pra trabalhar com documentos do Firestore
+//Funções pra trabalhar com documentos do Firestore
 import {
   collection,
   addDoc,
@@ -23,12 +23,15 @@ const botaoSalvar = document.getElementById("botaoSalvar");
 const residentesTb = document.getElementById("residentesTb");
 //Formulário
 const residenteForm = document.getElementById("residenteForm");
+const tituloForm = document.getElementById("tituloForm");
+const descricaoForm = document.getElementById("descricaoForm");
 //Mensagem exibida quando não existem residentes
 const tabelaVazia = document.getElementById("tabelaVazia");
 
 //Campos do formulário
 const nomeInput = document.getElementById("nome");
 const dataNascimentoInput = document.getElementById("dataNascimento");
+const sexoSelect = document.getElementById("sexo");
 const cpfInput = document.getElementById("cpf");
 const telefoneInput = document.getElementById("telefone");
 const responsavelInput = document.getElementById("responsavel");
@@ -57,6 +60,9 @@ cancelarResidenteBotao.addEventListener("click", () => {
   residenteForm.reset();
   //Sai do modo edição
   residenteEditandoId = null;
+  //Muda visualmente o titulo e a descrição do formulário
+  tituloForm.textContent = "Novo residente";
+  descricaoForm.textContent = "Informe os dados do residente"; 
   botaoSalvar.disabled = false;
   botaoSalvar.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar residente';
 });
@@ -77,6 +83,7 @@ residenteForm.addEventListener("submit", async (event) =>{
         nome: nomeInput.value.trim(),
         dataNascimento: dataNascimentoInput.value.trim(),
         cpf: cpfInput.value.trim(),
+        sexo: sexoSelect.value || "Não informado",
         telefone: telefoneInput.value.trim(),
         responsavel: responsavelInput.value.trim(),
         endereco: enderecoInput.value.trim(),
@@ -89,6 +96,7 @@ residenteForm.addEventListener("submit", async (event) =>{
         nome: nomeInput.value.trim(),
         dataNascimento: dataNascimentoInput.value,
         cpf: cpfInput.value.trim(),
+        sexo: sexoSelect.value || "Não informado",
         telefone: telefoneInput.value.trim(),
         responsavel: responsavelInput.value.trim(),
         endereco: enderecoInput.value.trim(),
@@ -101,6 +109,9 @@ residenteForm.addEventListener("submit", async (event) =>{
     //Limpa o formulário
     residenteForm.reset();
     residenteEditandoId = null;
+    //Muda visualmente o titulo e a descrição do formulário
+    tituloForm.textContent = "Novo residente";
+    descricaoForm.textContent = "Informe os dados do residente"; 
     botaoSalvar.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar residente';
     botaoSalvar.disabled = false;
 
@@ -129,7 +140,7 @@ async function carregarResidentes(){
     }
     tabelaVazia.style.display = "none";
 
-    //Preencher tabela
+    //Preencher tabela com os dados do residente
     resultado.forEach((documento) =>{
       //Pega os dados do documento
       const residente = documento.data();
@@ -204,6 +215,7 @@ async function editarResidente(id){
         //Preenche o fomulário com os dados do residente a ser editado
         nomeInput.value = residente.nome || "";
         dataNascimentoInput.value = residente.dataNascimento || "";
+        sexoSelect.value = residente.sexo || "";
         cpfInput.value = residente.cpf || "";
         telefoneInput.value = residente.telefone || "";
         responsavelInput.value = residente.responsavel || "";
@@ -211,6 +223,9 @@ async function editarResidente(id){
         observacoesInput.value = residente.observacoes || "";
 
         residenteEditandoId = documento.id;
+        //Muda visualmente o titulo e a descrição do formulário
+        tituloForm.textContent = "Editar residente";
+        descricaoForm.textContent = "Altere os dados do residente"; 
         botaoSalvar.innerHTML = '<i class="fa-solid fa-pen"></i> Atualizar residente';
         //Leva o usuário até o formulário
         residenteForm.scrollIntoView({behavior: "smooth"});

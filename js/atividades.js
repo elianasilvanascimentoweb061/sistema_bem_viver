@@ -1,10 +1,10 @@
-// Importa o Authentication e o Firestore que já foram configurados no firebase.js
+//Importa o Authentication e o Firestore que já foram configurados no firebase.js
 import {auth, db} from "./firebase.js";
 import {
   onAuthStateChanged, //verifica se tem algum usuário logado
-  signOut // pra sair
+  signOut //pra sair
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-// Funções pra trabalhar com documentos do Firestore
+//Funções pra trabalhar com documentos do Firestore
 import {
   collection,
   addDoc,
@@ -24,6 +24,8 @@ const botaoSalvar = document.getElementById("botaoSalvar");
 const atividadesTb = document.getElementById("atividadesTb");
 //Formulário
 const atividadeForm = document.getElementById("atividadeForm");
+const tituloForm = document.getElementById("tituloForm");
+const descricaoForm = document.getElementById("descricaoForm");
 //Mensagem exibida quando não existem atividades
 const tabelaVazia = document.getElementById("tabelaVazia");
 
@@ -97,6 +99,9 @@ cancelarBotao.addEventListener("click", () => {
   atividadeForm.reset();
   //Sai do modo edição
   atividadeEditandoId = null;
+  //Muda visualmente o titulo e a descrição do formulário
+  tituloForm.textContent = "Adicionar atividade";
+  descricaoForm.textContent = "Informe os dados da atividade."; 
   //Novo cadastro começa como Agendada
   statusSelect.value = "Agendada";
   botaoSalvar.disabled = false;
@@ -117,7 +122,6 @@ atividadeForm.addEventListener("submit", async (event) =>{
     const responsavelId = responsavelSelect.value;
     const responsavelNome = funcionarioSelecionado 
       ? funcionarioSelecionado.dataset.nome: "";
-
 
     //Modo edição
     if(atividadeEditandoId){
@@ -154,6 +158,9 @@ atividadeForm.addEventListener("submit", async (event) =>{
     //Limpa o formulário
     atividadeForm.reset();
     atividadeEditandoId = null;
+    //Muda visualmente o titulo e a descrição do formulário
+    tituloForm.textContent = "Adicionar atividade";
+    descricaoForm.textContent = "Informe os dados da atividade."; 
     statusSelect.value = "Agendada";
     botaoSalvar.disabled = false;
     botaoSalvar.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar atividade';
@@ -267,6 +274,9 @@ async function editarAtividade(id){
         observacoesInput.value = atividade.observacoes || "";
 
         atividadeEditandoId = documento.id;
+        //Muda visualmente o titulo e a descrição do formulário
+        tituloForm.textContent = "Editar atividade";
+        descricaoForm.textContent = "Altere os dados da atividade.";
         botaoSalvar.innerHTML = '<i class="fa-solid fa-pen"></i> Atualizar atividade';
         //Leva o usuário até o formulário
         atividadeForm.scrollIntoView({behavior: "smooth"});
