@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <!--Pega as configurações do menu e cabeçalho-->
   <link rel="stylesheet" href="css/dashboard.css">
   <!--Específico da página residentes-->
-  <link rel="stylesheet" href="css/atividades.css">
+  <link rel="stylesheet" href="css/residentes.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <title>Atividades | Bem Viver</title>
+  <title>Residentes | Bem Viver</title>
 </head>
 <body>
   <!--ESTRUTURA PRINCIPAL-->
@@ -36,7 +35,7 @@
           <i class="fa-solid fa-house"></i>
           <span> Início </span>
         </a>
-        <a href="residentes.html" class="menu_item">
+        <a href="#" class="menu_item active">
           <i class="fa-solid fa-person"></i>
           <span> Residentes </span>
         </a>
@@ -44,7 +43,7 @@
           <i class="fa-solid fa-users"></i>
           <span> Funcionários </span>
         </a>
-        <a href="#" class="menu_item active">
+        <a href="atividade.html" class="menu_item">
           <i class="fa-solid fa-calendar-days"></i>
           <span> Atividades </span>
         </a>
@@ -53,9 +52,10 @@
         <p class="menu_titulo menu_titulo_secundario"> SISTEMA </p>
         <a href="relatorios.html" class="menu_item">
           <i class="fa-solid fa-chart-column"></i>
-          <span> Relatórios </span> 
+          <span> Relatórios </span>
         </a>
       </nav>
+
       <!--Botão sair-->
       <div class="sidebar_sair">
         <button id="botaoSair" class="botao_sair">
@@ -65,6 +65,7 @@
       </div>
       <!--Fim menu principal-->
     </aside>
+    <!--Fim menu Lateral-->
 
     <!--Conteúdo Principal-->
     <main class="conteudo_principal">
@@ -89,24 +90,24 @@
         </div>
       </header>
 
-      <!--Conteúdo das atividades-->
-      <section class="atividades_content">
+      <!--Conteúdo dos residentes-->
+      <section class="residentes_content">
         <!--Título-->
         <div class="pagina_cabecalho">
           <div>
-            <h1> Gerenciamento de atividade </h1>
+            <h1> Gerenciamento de residentes </h1>
             <p> 
-              Cadastre e gerencie as atividades para os residentes da instituição. 
+              Cadastre e gerencie os residentes da instituição. 
             </p>
           </div>
         </div>
         <!--Fim da div pagina_cabecalho-->
 
-        <!--Lista de atividades-->
+        <!--Lista de residentes-->
         <section class="painel_tabela">
           <div class="painel_titulo">
-            <h2> Atividades programadas </h2>
-            <p> Lista de atividades programadas. </p>
+            <h2> Residentes cadastrados </h2>
+            <p> Lista de residentes da instituição. </p>
           </div>
 
           <!--Tabela-->
@@ -114,140 +115,107 @@
             <table>
               <thead>
                 <tr>
-                  <th> Atividade </th>
-                  <th> Data </th>
-                  <th> Horário </th>
-                  <th> Profissional responsável </th>
-                  <th> Status </th>
+                  <th> Nome </th>
+                  <th> Nascimento </th>
+                  <th> Responsável </th>
+                  <th> Telefone </th>
                   <th> Ações </th>
                 </tr>
               </thead>
 
-              <tbody id="atividadesTb">
-                <!--O JavaScript irá colocar as atividades aqui-->
+              <tbody id="residentesTb">
+                <!--O JavaScript irá colocar os residentes aqui-->
               </tbody>
             </table>
           </div>
 
-          <!--Quando não houver atividades-->
+          <!--Quando não houver residentes-->
           <div id="tabelaVazia" class="tabela_vazia">
             <i class="fa-solid fa-person-circle-plus"></i>
-            <h3> Nenhuma atividade programada </h3>
+            <h3> Nenhum residente cadastrado </h3>
             <p> 
-              Vá em "Adicionar atividade" para realizar o primeiro cadastro.
+              Vá em "Novo residente" para realizar o primeiro cadastro.
             </p>
           </div>
-          <!--Fim tabela-->
         </section>
+        <!--Fim lista de residentes-->
 
         <!--Formulário de cadastro-->
-        <section id="atividadeFormContainer" class="painel_form ">
+        <section id="residenteFormContainer" class="painel_form ">
           <div class="painel_titulo">
-            <h2> Adicionar atividade </h2>
-            <p> Informe os dados da atividade. </p>
+            <h2> Novo residente </h2>
+            <p> Informe os dados do residente. </p>
           </div>
 
-          <form id="atividadeForm">
+          <form id="residenteForm">
             <!-- Campos do formulário -->
             <div class="form_campos_container">
-              <!-- Nome da atividade-->
+              <!-- Nome -->
               <div class="form_campos">
-                <label for="atividadeNome"> 
-                  Nome da atividade *
+                <label for="nome"> 
+                  Nome completo *
                 </label>
                 <input
                   type="text"
-                  id="atividadeNome"
-                  name="atividadeNome"
-                  placeholder="Digite o nome da atividade"
+                  id="nome"
+                  name="nome"
+                  placeholder="Digite o nome completo"
                   required
                 >
               </div>
-              <!-- Tipo de atividade -->
+              <!-- Data de nascimento -->
               <div class="form_campos">
-                <label for="tipo"> Tipo de atividade * </label>
-                <select name="tipo" id="tipo" required>
-                  <option value="" selected disabled>
-                    Selecione o tipo de atividade
-                  </option>
-                  <option value="Física">
-                    Atividade física
-                  </option>
-                  <option value="Cognitiva">
-                    Cognitiva
-                  </option>
-                  <option value="Recreativa/Manual">
-                    Recreativa/Manual
-                  </option>
-                  <option value="Social">
-                    Social
-                  </option>
-                  <option value="Cultural">
-                    Cultural
-                  </option>
-                </select>
-              </div>
-              <!-- Data da atividade -->
-              <div class="form_campos">
-                <label for="dataAtividade">
-                  Data da atividade *
+                <label for="dataNascimento">
+                  Data de nascimento *
                 </label>
                 <input
                   type="date"
-                  id="dataAtividade"
-                  name="dataAtividade"
+                  id="dataNascimento"
+                  name="dataNascimento"
                   required
                 >
               </div>
-              <!-- Hora da atividade -->
+              <!-- CPF -->
               <div class="form_campos">
-                <label for="horaAtividade">
-                  Horário *
-                </label>
-                <input
-                  type="time"
-                  id="horaAtividade"
-                  name="horaAtividade"
-                  required
-                >
-              </div>
-              <!-- Nome do responsavel-->
-              <div class="form_campos">
-                <label for="responsavel"> 
-                  Nome do profissional responsavel *
-                </label>
-                <select name="responsavel" id="responsavel">
-                  <option value="">Selecione o responsavel</option>
-                  <!--O javascript vai carregar os funcionários aqui-->
-                </select>
-              </div>
-              <!-- Local -->
-              <div class="form_campos">
-                <label for="local"> Local </label>
+                <label for="cpf"> CPF </label>
                 <input
                   type="text"
-                  id="local"
-                  name="local"
-                  placeholder="Local da atividade"
+                  id="cpf"
+                  name="cpf"
+                  placeholder="000.000.000-00"
                 >
               </div>
-              <!-- Status da atividade -->
-              <div class="form_campos full-width">
-                <label for="status"> Status de atividade * </label>
-                <select name="status" id="status" required>
-                  <option value="Agendada" selected>
-                    Agendada
-                  </option>
-                  <option value="Em andamento">
-                    Em andamento
-                  </option>
-                  <option value="Concluída">
-                    Concluída
-                  </option>
-                  <option value="Cancelada">
-                    Cancelada
-                  </option>
-                </select>
+              <!-- Telefone -->
+              <div class="form_campos">
+                <label for="telefone"> Telefone </label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(99) 99999-9999"
+                >
+              </div>
+              <!-- Responsável -->
+              <div class="form_campos">
+                <label for="responsavel"> 
+                  Responsável
+                </label>
+                <input
+                  type="text"
+                  id="responsavel"
+                  name="responsavel"
+                  placeholder="Nome do responsável"
+                >
+              </div>
+              <!-- Endereço -->
+              <div class="form_campos">
+                <label for="endereco"> Endereço </label>
+                <input
+                  type="text"
+                  id="endereco"
+                  name="endereco"
+                  placeholder="Endereço do residente"
+                >
               </div>
               <!-- Observações -->
               <div class="form_campos full-width">
@@ -266,26 +234,27 @@
             <div class="form_botoes">
               <button
                 type="button"
-                id="cancelarBotao"
+                id="cancelarResidenteBotao"
                 class="botao_cancelar"
               >
                 Cancelar
               </button>
               <button type="submit" id="botaoSalvar" class="botao_salvar">
                 <i class="fa-solid fa-floppy-disk"></i>
-                Salvar atividade
+                Salvar residente
               </button>
             </div>
-
           </form>
         </section>
-        <!--Fim formulário de cadastro-->
+        <!--Fim seçao formulário-->
 
       </section>
     </main>
+    <!--Fim conteúdo principal-->
   </div>
   <!--Fim da div dashboard-->
-  <!--JavaScript-->
-  <script type="module" src="js/atividades.js"></script>
 </body>
+
+  <!--JavaScript-->
+  <script type="module" src="js/residentes.js"></script>
 </html>
