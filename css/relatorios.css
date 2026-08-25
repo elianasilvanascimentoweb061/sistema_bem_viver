@@ -43,12 +43,12 @@
   gap: 3px;
 }
 .status_item strong {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 .status_item div span {
   color: var(--blue);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 .agendada {
@@ -63,6 +63,37 @@
 .cancelada {
   color: #701616;
 }
+
+/*Distribuição por sexo*/
+.sexo_relatorio{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.sexo_grupo h3{
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 1rem;
+}
+.sexo_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sexo_item:last-child{
+  border-bottom: none; /*Elimina a linha do último item*/
+}
+.sexo_item span{
+  color: var(--text);
+  size: 0.95rem;
+}
+.sexo_item strong{
+  color: var(--accent);
+  size: 0.94rem;
+}
+
 
 /*Cargos*/
 .cargos_lista {
