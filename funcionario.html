@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/dashboard.css">
   <!--Específico da página residentes-->
   <link rel="stylesheet" href="css/funcionarios.css">
+  <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <title>Funcionários | Bem Viver</title>
 </head>
@@ -144,14 +145,16 @@
         <!--Formulário de cadastro-->
         <section id="funcionarioFormContainer" class="painel_form ">
           <div class="painel_titulo">
-            <h2> Novo funcionario </h2>
-            <p> Informe os dados do funcionario. </p>
+            <h2 id="tituloForm"> Novo funcionario </h2>
+            <p id="descricaoForm"> 
+              Informe os dados do funcionario. 
+            </p>
           </div>
 
           <form id="funcionarioForm">
-            <!-- Campos do formulário -->
+            <!--Campos do formulário-->
             <div class="form_campos_container">
-              <!-- Nome -->
+              <!--Nome-->
               <div class="form_campos">
                 <label for="nome"> 
                   Nome completo *
@@ -164,7 +167,7 @@
                   required
                 >
               </div>
-              <!-- Data de nascimento -->
+              <!--Data de nascimento-->
               <div class="form_campos">
                 <label for="dataNascimento">
                   Data de nascimento *
@@ -176,7 +179,19 @@
                   required
                 >
               </div>
-              <!-- CPF -->
+              <!--Sexo-->
+              <div class="form_campos">
+                <label for="sexo"> Sexo </label>
+                <select name="sexo" id="sexo">
+                  <option value="" selected> Selecione </option>
+                  <option value="Feminino"> Feminino </option>
+                  <option value="Masculino"> Masculino </option>
+                  <option value="Não informado"> 
+                    Não informado 
+                  </option>
+                </select>
+              </div>
+              <!--CPF-->
               <div class="form_campos">
                 <label for="cpf"> CPF </label>
                 <input
@@ -186,7 +201,7 @@
                   placeholder="000.000.000-00"
                 >
               </div>
-              <!-- Cargo -->
+              <!--Cargo-->
               <div class="form_campos">
                 <label for="cargo"> Cargo * </label>
                 <select name="cargo" id="cargo" required>
@@ -222,7 +237,7 @@
                   </option>
                 </select>
               </div>
-              <!-- Telefone -->
+              <!--Telefone-->
               <div class="form_campos">
                 <label for="telefone"> Telefone </label>
                 <input
@@ -232,7 +247,7 @@
                   placeholder="(99) 99999-9999"
                 >
               </div>
-              <!-- Email -->
+              <!--Email-->
               <div class="form_campos">
                 <label for="email"> E-mail * </label>
                 <input
@@ -243,7 +258,7 @@
                   required
                 >
               </div>
-              <!-- Data de admissão -->
+              <!--Data de admissão-->
               <div class="form_campos">
                 <label for="dataAdmissao">
                   Data de admissão
@@ -255,8 +270,8 @@
                   required
                 >
               </div>
-              <!-- Endereço -->
-              <div class="form_campos">
+              <!--Endereço-->
+              <div class="form_campos full-width">
                 <label for="endereco"> Endereço </label>
                 <input
                   type="text"
@@ -265,7 +280,7 @@
                   placeholder="Endereço do funcionario"
                 >
               </div>
-              <!-- Observações -->
+              <!--Observações-->
               <div class="form_campos full-width">
                 <label for="observacoes"> Observações </label>
                 <textarea
