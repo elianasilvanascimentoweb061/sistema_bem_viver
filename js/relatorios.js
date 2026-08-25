@@ -13,7 +13,7 @@ import {
 const botaoSair = document.getElementById("botaoSair");
 const userNome = document.getElementById("emailUser");
 
-const totalPacientes = document.getElementById("totalPacientes");
+const totalResidentes = document.getElementById("totalResidentes");
 const totalFuncionarios = document.getElementById("totalFuncionarios");
 const totalAtividades = document.getElementById("totalAtividades");
 
@@ -42,12 +42,12 @@ onAuthStateChanged( auth, async (usuario) =>{
 async function carregarRelatorios() {
   try{
     //Busca os três conjuntos de dados
-    const pacientesSnapshot = await getDocs(collection(db, "pacientes"));
+    const residentesSnapshot = await getDocs(collection(db, "residentes"));
     const funcionariosSnapshot = await getDocs(collection(db, "funcionarios"));
     const atividadesSnapshot = await getDocs(collection(db, "atividades"));
 
     //Atualiza os cards de resumo
-    totalPacientes.textContent = pacientesSnapshot.size;
+    totalResidentes.textContent = residentesSnapshot.size;
     totalFuncionarios.textContent = funcionariosSnapshot.size;
     totalAtividades.textContent = atividadesSnapshot.size;
 

@@ -14,7 +14,7 @@ import {
 //PEGA OS ELEMENTOS DA PÁGINA
 const botaoSair = document.getElementById("botaoSair");
 const userNome = document.getElementById("emailUser");
-const totalPacientes = document.getElementById("totalPacientes");
+const totalResidentes = document.getElementById("totalResidentes");
 const totalFuncionarios = document.getElementById("totalFuncionarios");
 const totalAtividades = document.getElementById("totalAtividades");
 const atividadesLista = document.getElementById("atividadesLista");
@@ -47,15 +47,15 @@ botaoSair.addEventListener("click", async () =>{
 //Carrega os cards
 async function carregarResumo() {
   try {
-    //Busca pacientes
-    const pacientesSnapshot = await getDocs(collection(db, "pacientes"));
+    //Busca residentes
+    const residentesSnapshot = await getDocs(collection(db, "residentes"));
     //Busca funcionários
     const funcionariosSnapshot = await getDocs(collection(db, "funcionarios"));
     //Busca atividades
     const atividadesSnapshot = await getDocs(collection(db, "atividades"));
 
     //Atualiza os números dos cards
-    totalPacientes.textContent = pacientesSnapshot.size;
+    totalResidentes.textContent = residentesSnapshot.size;
     totalFuncionarios.textContent = funcionariosSnapshot.size;
     totalAtividades.textContent = atividadesSnapshot.size;
 
