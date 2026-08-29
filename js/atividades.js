@@ -80,7 +80,9 @@ async function carregarFuncionarios() {
       const funcionario = documento.data();
       const opcao = document.createElement("option");
       opcao.value = documento.id;
-      opcao.textContent = funcionario.nome || "Funcionário sem nome";
+      //Mostra o nome e o cargo
+      opcao.textContent = 
+        `${funcionario.nome || "Funcionário sem nome"} - ${funcionario.cargo || "Cargo não informado"}`;
 
       //Guarda o nome também
       opcao.dataset.nome = funcionario.nome || "";

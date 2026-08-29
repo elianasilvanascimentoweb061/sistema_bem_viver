@@ -147,22 +147,39 @@ async function carregarFuncionarios(){
     }
     tabelaVazia.style.display = "none";
 
-    //Preencher tabela
-    resultado.forEach((documento) =>{
-      //Pega os dados do documento
+    //Cria um array com os funcionários
+    const funcionarios = [];
+
+    resultado.forEach((documento) => {
       const funcionario = documento.data();
-      //Cria uma nova linha
+      funcionarios.push({
+        id: documento.id, ...funcionario
+      });
+    });
+
+    //Ordena os funcionários em ordem alfabética pelo nome
+    funcionarios.sort((a, b) => {
+      return (a.nome || "").localeCompare(
+        b.nome || "",
+        "pt-BR",
+        { sensitivity: "base" }
+      );
+    });
+
+    //Prenche a tabela com os dados já ordenados
+    funcionarios.forEach((funcionario) => {
       const linha = document.createElement("tr");
+
       linha.innerHTML = `
-        <td> ${funcionario.nome || "-"} </td>
-        <td> ${funcionario.cargo || "-"} </td>
-        <td> ${funcionario.telefone || "-"} </td>
-        <td> ${funcionario.email || "-"} </td>
-        <td> ${formatarData(funcionario.dataAdmissao)} </td>
+        <td>${funcionario.nome || "-"}</td>
+        <td>${funcionario.cargo || "-"}</td>
+        <td>${funcionario.telefone || "-"}</td>
+        <td>${funcionario.email || "-"}</td>
+        <td>${formatarData(funcionario.dataAdmissao)}</td>
         <td>
           <button
             class="table_action editar"
-            data-id="${documento.id}"
+            data-id="${funcionario.id}"
             title="Editar funcionário"
             type="button"
           >
@@ -171,13 +188,12 @@ async function carregarFuncionarios(){
 
           <button
             class="table_action excluir"
-            data-id="${documento.id}"
+            data-id="${funcionario.id}"
             title="Excluir funcionário"
             type="button"
           >
             <i class="fa-solid fa-trash"></i>
           </button>
-
         </td>
       `;
       //Adiciona uma linha na tabela

@@ -140,21 +140,38 @@ async function carregarResidentes(){
     }
     tabelaVazia.style.display = "none";
 
-    //Preencher tabela com os dados do residente
-    resultado.forEach((documento) =>{
-      //Pega os dados do documento
+    //Cria um array com os residentes
+    const residentes = [];
+
+    resultado.forEach((documento) => {
       const residente = documento.data();
-      //Cria uma nova linha
+      residentes.push({
+        id: documento.id, ...residente
+      });
+    });
+
+    //Ordena os residentes em ordem alfabética pelo nome
+    residentes.sort((a, b) => {
+      return (a.nome || "").localeCompare(
+        b.nome || "",
+        "pt-BR",
+        { sensitivity: "base" }
+      );
+    });
+
+    //Prenche a tabela com os dados já ordenados
+    residentes.forEach((residente) => {
       const linha = document.createElement("tr");
+
       linha.innerHTML = `
-        <td> ${residente.nome || "-"} </td>
-        <td> ${formatarData(residente.dataNascimento)} </td>
-        <td> ${residente.responsavel || "-"} </td>
-        <td> ${residente.telefone || "-"} </td>
+        <td>${residente.nome || "-"}</td>
+        <td>${formatarData(residente.dataNascimento)}</td>
+        <td>${residente.responsavel || "-"}</td>
+        <td>${residente.telefone || "-"}</td>
         <td>
           <button
             class="table_action editar"
-            data-id="${documento.id}"
+            data-id="${residente.id}"
             title="Editar residente"
             type="button"
           >
@@ -163,13 +180,12 @@ async function carregarResidentes(){
 
           <button
             class="table_action excluir"
-            data-id="${documento.id}"
+            data-id="${residente.id}"
             title="Excluir residente"
             type="button"
           >
             <i class="fa-solid fa-trash"></i>
           </button>
-
         </td>
       `;
       //Adiciona uma linha na tabela
