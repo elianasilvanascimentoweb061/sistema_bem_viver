@@ -33,8 +33,8 @@ const nomeInput = document.getElementById("nome");
 const dataNascimentoInput = document.getElementById("dataNascimento");
 const sexoSelect = document.getElementById("sexo");
 const cpfInput = document.getElementById("cpf");
+const contatoReferenciaInput = document.getElementById("contatoReferencia");
 const telefoneInput = document.getElementById("telefone");
-const responsavelInput = document.getElementById("responsavel");
 const enderecoInput = document.getElementById("endereco");
 const observacoesInput = document.getElementById("observacoes");
 
@@ -84,8 +84,8 @@ residenteForm.addEventListener("submit", async (event) =>{
         dataNascimento: dataNascimentoInput.value.trim(),
         cpf: cpfInput.value.trim(),
         sexo: sexoSelect.value || "Não informado",
+        contatoReferencia: contatoReferenciaInput.value.trim(),
         telefone: telefoneInput.value.trim(),
-        responsavel: responsavelInput.value.trim(),
         endereco: enderecoInput.value.trim(),
         observacoes: observacoesInput.value.trim(),
       });
@@ -97,8 +97,8 @@ residenteForm.addEventListener("submit", async (event) =>{
         dataNascimento: dataNascimentoInput.value,
         cpf: cpfInput.value.trim(),
         sexo: sexoSelect.value || "Não informado",
+        contatoReferencia: contatoReferenciaInput.value.trim(),
         telefone: telefoneInput.value.trim(),
-        responsavel: responsavelInput.value.trim(),
         endereco: enderecoInput.value.trim(),
         observacoes: observacoesInput.value.trim(),
         //Registra quando o cadastro foi realizado
@@ -166,7 +166,7 @@ async function carregarResidentes(){
       linha.innerHTML = `
         <td>${residente.nome || "-"}</td>
         <td>${formatarData(residente.dataNascimento)}</td>
-        <td>${residente.responsavel || "-"}</td>
+        <td>${residente.contatoReferencia || "-"}</td>
         <td>${residente.telefone || "-"}</td>
         <td>
           <button
@@ -233,8 +233,8 @@ async function editarResidente(id){
         dataNascimentoInput.value = residente.dataNascimento || "";
         sexoSelect.value = residente.sexo || "";
         cpfInput.value = residente.cpf || "";
+        contatoReferenciaInput.value = residente.contatoReferencia || "";
         telefoneInput.value = residente.telefone || "";
-        responsavelInput.value = residente.responsavel || "";
         enderecoInput.value = residente.endereco || "";
         observacoesInput.value = residente.observacoes || "";
 
