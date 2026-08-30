@@ -118,8 +118,8 @@
                 <tr>
                   <th> Nome </th>
                   <th> Nascimento </th>
-                  <th> Responsável </th>
-                  <th> Telefone </th>
+                  <th> Contato de referência </th>
+                  <th> Telefone para contato </th>
                   <th> Ações </th>
                 </tr>
               </thead>
@@ -199,24 +199,28 @@
                   required
                 >
               </div>
+              <!--Contato de referência-->
+              <div class="form_campos">
+                <label for="contatoReferencia"> 
+                  Contato de referência 
+                </label>
+                <input
+                  type="text"
+                  id="contatoReferencia"
+                  name="contatoReferencia"
+                  placeholder="Informe uma pessoa de referência para contato"
+                >
+              </div>
               <!--Telefone-->
               <div class="form_campos">
-                <label for="telefone"> Telefone </label>
+                <label for="telefone"> 
+                  Telefone para contato 
+                </label>
                 <input
                   type="tel"
                   id="telefone"
                   name="telefone"
                   placeholder="(99) 99999-9999"
-                >
-              </div>
-              <!--Responsável-->
-              <div class="form_campos">
-                <label for="responsavel"> Responsável </label>
-                <input
-                  type="text"
-                  id="responsavel"
-                  name="responsavel"
-                  placeholder="Nome do responsável"
                 >
               </div>
               <!--Endereço-->
